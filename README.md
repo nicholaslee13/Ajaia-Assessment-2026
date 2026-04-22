@@ -2,6 +2,10 @@
 
 A small full-stack collaborative document editor built with Next.js and Supabase.
 
+## Current Development Step
+
+Task 1 scaffolds the Next.js app, TypeScript configuration, and test tooling so the rest of the implementation plan has a working baseline.
+
 ## Current Status
 
 This repository currently contains:
