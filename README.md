@@ -91,6 +91,45 @@ npm test
 npm run test:e2e
 ```
 
+## Vercel Deployment
+
+The current branch is safe to deploy to Vercel before full Supabase setup is complete. Without Supabase environment variables, the homepage renders in preview mode and disables the magic-link submit action instead of crashing the deployment.
+
+### 1. Import the repository into Vercel
+
+- Create a new Vercel project
+- Select `nicholaslee13/Ajaia-Assessment-2026`
+- Choose the `codex/task-1-scaffold` branch if you want to preview the in-progress branch
+
+### 2. Use the default framework settings
+
+- Framework preset: `Next.js`
+- Build command: `next build`
+- Output directory: leave blank
+
+### 3. Add environment variables
+
+Set these in the Vercel project when you are ready to enable real auth:
+
+```env
+NEXT_PUBLIC_SITE_URL=https://your-vercel-domain.vercel.app
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+```
+
+### 4. Update Supabase auth URLs
+
+In Supabase Auth, add your Vercel deployment URL as an allowed redirect URL:
+
+```text
+https://your-vercel-domain.vercel.app/auth/callback
+```
+
+### 5. Deploy
+
+After the project is imported and environment variables are set, Vercel can build and deploy the app automatically from GitHub.
+
 ## Supabase Setup Notes
 
 We will wire Supabase in during implementation. The expected setup flow is:

@@ -1,6 +1,6 @@
 "use server";
 
-import { env } from "@/lib/env";
+import { getSupabaseConfig } from "@/lib/env";
 import { createServerClient } from "@/lib/supabase/server";
 
 type AuthState = {
@@ -15,6 +15,11 @@ export async function sendMagicLink(
 
   if (!email) {
     return { message: "Email is required." };
+  }
+
+  const env = getSupabaseConfig();
+  if (!env) {
+    return { message: "Supabase is not configured yet. Add your environment variables before sending magic links." };
   }
 
   const supabase = await createServerClient();
